@@ -1,0 +1,41 @@
+{% extends '@Home/base.html.twig' %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block body %}
+    <div class="container">
+        <h2>Mes recettes</h2>
+        <div class="row">
+            <div class="col s12 m8 l6">
+                {% for recette in recette %}
+                    <div class="row">
+                        <div class="col s11">
+                            <div class="col s4">
+                                <a href="/detail/{{ recette.id }}"><img src="{{ asset('uploads/images/' ~ recette.photo) }}" class="responsive-img z-depth-2"></a>
+                            </div>
+                            <div class="col s8">
+                                <h4 class="couleur"><a href="/detail/{{ recette.id }}">{{ recette.nom }}</a></h4>
+                                <p>
+                                    Catégorie : {{ recette.categorie }}<br>
+                                    Créé par {{ recette.auteur }}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col s1">
+                            <a href="/modif/{{ recette.id }}">
+                                <i class="material-icons">edit</i>
+                            </a>
+                        </div>
+                        <div class="col s1">
+                            <a href="/modif/{{ recette.id }}">
+                                <i class="material-icons">clear</i>
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="col s12 m4 l6">
+                <a class="waves-effect waves-light btn jaune black-text inscrit right" href="/ajout">Ajouter une recette</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
