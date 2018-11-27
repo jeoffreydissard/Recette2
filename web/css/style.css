@@ -1,6 +1,18 @@
+
+/*======================================================= Init =======================================================*/
+
 @font-face {
     font-family: "Satisfy";
     src: url("font/Satisfy-Regular.ttf");
+}
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
 }
 .jaune{
     background-color: #FFB03B;
@@ -8,7 +20,14 @@
 .jaune-text{
     color: #FFB03B;
 }
+select{
+    display: block;
+}
+.marginT{
+    margin-top: 50px;
+}
 /*======================================================= NavBar =======================================================*/
+
 .Logo{
     max-height: 100px;
 }
@@ -27,7 +46,9 @@
 .bordurenav{
     border-bottom: 3px solid #FFB03B;
 }
+
 /*======================================================= Index =======================================================*/
+
 header{
     background: url(../img/banner-bg.jpg) center;
     height: 450px;
@@ -50,4 +71,32 @@ header h3{
     text-transform: capitalize;
     border-radius: 20px;
     font-size: 1em;
+}
+
+/*======================================================= Recettes =======================================================*/
+
+.card .card-content .card-title {
+    text-transform: uppercase;
+    margin-bottom: 0;
+    white-space: nowrap;
+    font-size: 1.4rem;
+}
+.card .card-content{
+    padding: 16px 6%;
+}
+.card .card-image{
+    height: 200px;
+    background-size: cover;
+}
+.entrees{
+    background: url(../img/categories/entrees.jpg) center;
+}
+.plats{
+    background: url(../img/categories/plats.jpg) center;
+}
+.sauces{
+    background: url(../img/categories/sauces.jpg) center;
+}
+.desserts{
+    background: url(../img/categories/desserts.jpg) center;
 }

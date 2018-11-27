@@ -3,16 +3,53 @@
 
 {% block body %}
 
-    <header class="center">
-        <div class="filtre">
-            <h1>
-                Mes recettes
-            </h1>
-            <h3>
-                Sauvegarder et personnalisez<br>
-                vos recettes préférées
-            </h3>
-            <a class="waves-effect waves-light btn jaune black-text inscrit" href="/register">s'inscrire</a>
+    <div class="container marginT">
+        <div class="row">
+            <div class="col s12 m6 l3">
+                <div class="card">
+                    <div class="card-image waves-effect waves-block waves-light entrees">
+                    </div>
+                    <div class="card-content">
+                        <a href="/entrees">
+                            <span class="card-title activator jaune-text">Les entrées</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m6 l3">
+                <div class="card">
+                    <div class="card-image waves-effect waves-block waves-light plats">
+                    </div>
+                    <div class="card-content">
+                        <a href="/plats">
+                            <span class="card-title activator jaune-text">Les plats</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m6 l3">
+                <div class="card">
+                    <div class="card-image waves-effect waves-block waves-light sauces">
+                    </div>
+                    <div class="card-content">
+                        <a href="/sauces">
+                            <span class="card-title activator jaune-text">Les sauces</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m6 l3">
+                <div class="card">
+                    <div class="card-image waves-effect waves-block waves-light desserts">
+                    </div>
+                    <div class="card-content">
+                        <a href="/desserts">
+                            <span class="card-title activator jaune-text">Les desserts</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
-    </header>
+    </div>
+
 {% endblock %}

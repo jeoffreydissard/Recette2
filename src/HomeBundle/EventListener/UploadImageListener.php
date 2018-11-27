@@ -1,12 +1,12 @@
 <?php
 
-namespace JournalBundle\EventListener;
+namespace HomeBundle\EventListener;
 
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
-use JournalBundle\Entity\Form;
-use JournalBundle\ImageUpload;
+use HomeBundle\Entity\Recette;
+use HomeBundle\ImageUpload;
 
 class UploadImageListener
 {
@@ -34,11 +34,11 @@ class UploadImageListener
     private function uploadFile($entity)
     {
         // upload only works for Product entities
-        if (!$entity instanceof Form) {
+        if (!$entity instanceof Recette) {
             return;
         }
 
-        $file = $entity->getImage();
+        $file = $entity->getPhoto();
 
         // only upload new files
         if (!$file instanceof UploadedFile) {
@@ -46,6 +46,6 @@ class UploadImageListener
         }
 
         $fileName = $this->uploader->upload($file);
-        $entity->setImage($fileName);
+        $entity->setPhoto($fileName);
     }
 }

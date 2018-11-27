@@ -1,51 +1,24 @@
-{% extends '@Journal/Journal/base.html.twig' %}
+{% extends '@Home/base.html.twig' %}
 
 {% block title %}
-    {{ form.titre }}
+    {{ recette.titre }}
 {% endblock %}
 
 {% block body %}
-    <h3 class="center-align">Détail de l'article</h3>
+    <h3 class="center-align">Détail de la recette</h3>
 
     <div class="row">
         <div class="col s12 m10 l8 offset-m1 offset-l2 Article z-depth-2">
-            <h4 class="center-align">{{ form.titre }}</h4>
+            <h4 class="center-align">{{ recette.nom }}</h4>
             <div class="col s12 m6">
-                <img src="{{ asset('uploads/images/' ~ form.image) }}" class="responsive-img z-depth-1">
+                <img src="{{ asset('uploads/images/' ~ recette.photo) }}" class="responsive-img z-depth-1">
             </div>
             <div class="col s12 m6">
-                <p>{{ form.contenu }}<br/></p>
+                <p>{{ recette.preparation }}<br/></p>
             </div>
             <div class="col s9 paddingB">
-                <p class="creation">Crée par <b>{{ form.auteur }}</b>, le <b>{{form.date|localizeddate('none', 'none', null, null, 'EEEE d MMMM Y')}}</b></p>
-                <p class="creation">Catégorie : {{ form.categorie }}</p>
-            </div>
-            {% if app.user.hasRole('ROLE_AUTEUR') and (app.user.username == form.auteur) %}
-                <div class="col s3 paddingB right-align">
-                    <a href="/auteur/modif/{{ form.id }}"><i class="material-icons">edit</i></a>
-                    <a href="/auteur/supp/{{ form.id }}"><i class="material-icons">delete</i></a>
-                </div>
-            {% endif %}
-            {% if app.user.hasRole('ROLE_ADMIN') %}
-                <div class="col s3 paddingB right-align">
-                    <a href="/auteur/modif/{{ form.id }}"><i class="material-icons">edit</i></a>
-                    <a href="/auteur/supp/{{ form.id }}"><i class="material-icons">delete</i></a>
-                </div>
-            {% endif %}
-            <div class="col s12 m12 l12">
-                {{ form_start(ajoutCom) }}
-                <div class="col s8">
-                    {{ form_label(ajoutCom.content) }}
-                    {{ form_widget(ajoutCom.content) }}
-                </div>
-                {{ form_widget(ajoutCom) }}
-                {{ form_end(ajoutCom) }}
-            </div>
-            <div class="col s12">
-                {% for lescom in lescom %}
-                    <p>{{ lescom.content }}</p>
-                    <p class="creation">Commenté par <b>{{ lescom.usrId }}</b>, le <b>{{lescom.datecom|localizeddate('none', 'none', null, null, 'EEEE d MMMM Y')}}</b></p>
-                {% endfor %}
+                <p class="creation">Crée par <b>{{ recette.auteur }}</b></p>
+                <p class="creation">Catégorie : {{ recette.categorie }}</p>
             </div>
         </div>
     </div>

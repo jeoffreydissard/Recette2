@@ -1,6 +1,6 @@
 <?php
 
-namespace JournalBundle;
+namespace HomeBundle;
 
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 

@@ -1,3 +1,35 @@
 home_homepage:
     path:     /
     defaults: { _controller: HomeBundle:Default:index }
+
+ajout_homepage:
+    path:     /ajout
+    defaults: { _controller: HomeBundle:Default:ajout }
+
+mesrecettes_homepage:
+    path:     /mes-recettes
+    defaults: { _controller: HomeBundle:Default:mesrecettes }
+
+recettes_homepage:
+    path:     /recettes
+    defaults: { _controller: HomeBundle:Default:recettes }
+
+entrees_homepage:
+    path:     /entrees
+    defaults: { _controller: HomeBundle:Default:entrees }
+
+plats_homepage:
+    path:     /plats
+    defaults: { _controller: HomeBundle:Default:plats }
+
+sauces_homepage:
+    path:     /sauces
+    defaults: { _controller: HomeBundle:Default:sauces }
+
+desserts_homepage:
+    path:     /desserts
+    defaults: { _controller: HomeBundle:Default:desserts }
+
+detail_homepage:
+    path:     /detail/{id}
+    defaults: { _controller: HomeBundle:Default:detail }

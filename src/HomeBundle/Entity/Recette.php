@@ -2,6 +2,9 @@
 
 namespace HomeBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * Recette
  */
@@ -18,7 +21,10 @@ class Recette
     private $nom;
 
     /**
-     * @var string
+     * @ORM\Column(type="string")
+     *
+     * @Assert\NotBlank(message="Ajouter une image jpg")
+     * @Assert\File(mimeTypes={ "image/jpeg" })
      */
     private $photo;
 
