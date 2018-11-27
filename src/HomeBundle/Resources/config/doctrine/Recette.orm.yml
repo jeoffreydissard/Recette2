@@ -1,0 +1,47 @@
+HomeBundle\Entity\Recette:
+    type: entity
+    table: null
+    repositoryClass: HomeBundle\Repository\RecetteRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        nom:
+            type: string
+            length: 255
+            column: Nom
+        photo:
+            type: string
+            length: 255
+            column: Photo
+        categorie:
+            type: string
+            length: 255
+            column: Categorie
+        temps:
+            type: string
+            length: 255
+            column: Temps
+        ingredients:
+            type: string
+            length: 255
+            column: Ingredients
+        nbPersonnes:
+            type: integer
+            column: NbPersonnes
+        preparation:
+            type: string
+            length: 255
+            column: Preparation
+    manyToOne:
+        auteur:
+            targetEntity: UserBundle\Entity\User
+            inversedBy: Recette
+            cascade: ["persist"]
+            joinColumn:
+                name: auteur
+                referencedColumnName: id
+    lifecycleCallbacks: {  }
