@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% include '@Home/base/header.html.twig' %}
+    </head>
+    <body>
+
+        {% include '@Home/base/nav.html.twig' %}
+
+        {% if app.request.hasPreviousSession %}
+            {% for type, messages in app.session.flashbag.all() %}
+                {% for message in messages %}
+                    <div class="flash-{{ type }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
+        <main>
+            {% block body %}
+            {% endblock %}
+            {% block fos_user_content %}
+            {% endblock fos_user_content %}
+        </main>
+
+        {% include '@Home/base/footer.html.twig' %}
+
+        {% include '@Home/base/javascript.html.twig' %}
+    </body>
+</html>

@@ -1,0 +1,55 @@
+{% block nav %}
+    <ul id="dropdown1" class="dropdown-content">
+        <li><a href="/mes-recettes">Mes recettes</a></li>
+        <li><a href="/logout">Se déconnecter</a></li>
+    </ul>
+
+    <ul id="dropdown2" class="dropdown-content">
+        <li><a href="/mes-recettes">Mes recettes</a></li>
+        <li><a href="/logout">Se déconnecter</a></li>
+    </ul>
+
+    <nav>
+        <div class="nav-wrapper white NavBar bordurenav">
+            <a href="/" class="brand-logo center">
+                <div class="bordureRond">
+                    <div class="blancrond">
+                        <img src="{{ asset('img/icones/logo-mes-recettes.png') }}" alt="Mes recettes" class="responsive-img Logo">
+                    </div>
+                </div>
+            </a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons black-text">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                {% if (app.user == null) %}
+                    <li><a href="/" class="black-text">Accueil</a></li>
+                    <li><a href="/recettes" class="black-text">Recettes</a></li>
+                    <li><a href="/login" class="black-text">Login</a></li>
+
+                {% endif %}
+                {% if app.user %}
+                    <li><a href="/" class="black-text">Accueil</a></li>
+                    <li><a href="/recettes" class="black-text">Recettes</a></li>
+                    {% if app.user.hasRole('ROLE_ADMIN') %}
+                        <li><a href="/admin/admin" class="black-text">Admin</a></li>
+                    {% endif %}
+                <li><a class="dropdown-trigger black-text" href="#!" data-target="dropdown1">{{ app.user.username }}<i class="material-icons black-text right">arrow_drop_down</i></a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <ul class="sidenav" id="mobile-demo">
+        {% if (app.user == null) %}
+            <li><a href="/" class="black-text">Accueil</a></li>
+            <li><a href="/recettes" class="black-text">Recettes</a></li>
+        {% endif %}
+        {% if app.user %}
+            <li><a href="/" class="black-text">Accueil</a></li>
+            <li><a href="/recettes" class="black-text">Recettes</a></li>
+            {% if app.user.hasRole('ROLE_ADMIN') %}
+                <li><a href="/admin/admin" class="black-text">Admin</a></li>
+            {% endif %}
+            <li><a class="dropdown-trigger2 black-text" href="#!" data-target="dropdown2">{{ app.user.username }}<i class="material-icons black-text right">arrow_drop_down</i></a></li>
+        {% endif %}
+    </ul>
+{% endblock %}

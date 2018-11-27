@@ -1,0 +1,53 @@
+@font-face {
+    font-family: "Satisfy";
+    src: url("font/Satisfy-Regular.ttf");
+}
+.jaune{
+    background-color: #FFB03B;
+}
+.jaune-text{
+    color: #FFB03B;
+}
+/*======================================================= NavBar =======================================================*/
+.Logo{
+    max-height: 100px;
+}
+.bordureRond{
+    background-color: #FFB03B;
+    width: 200px;
+    height: 110px;
+    border-radius: 50%;
+}
+.blancrond{
+    background-color: #ffffff;
+    width: 200px;
+    height: 104px;
+    border-radius: 50%;
+}
+.bordurenav{
+    border-bottom: 3px solid #FFB03B;
+}
+/*======================================================= Index =======================================================*/
+header{
+    background: url(../img/banner-bg.jpg) center;
+    height: 450px;
+    background-size: cover;
+}
+.filtre{
+    background-color: rgba(0, 0, 0, 0.44);
+    padding: 80px 20px;
+    height: 450px;
+}
+header h1{
+    font-family: "Satisfy";
+    color: #FFB03B;
+}
+header h3{
+    font-family: "Satisfy";
+    color: #FFFFFF;
+}
+.inscrit{
+    text-transform: capitalize;
+    border-radius: 20px;
+    font-size: 1em;
+}
