@@ -33,3 +33,11 @@ desserts_homepage:
 detail_homepage:
     path:     /detail/{id}
     defaults: { _controller: HomeBundle:Default:detail }
+
+modif_homepage:
+    path:     /modif/{id}
+    defaults: { _controller: HomeBundle:Default:modif }
+
+supp_homepage:
+    path:     /supp/{id}
+    defaults: { _controller: HomeBundle:Default:supp }

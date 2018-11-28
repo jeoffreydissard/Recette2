@@ -26,6 +26,35 @@ select{
 .marginT{
     margin-top: 50px;
 }
+h2{
+    font-family: "Satisfy";
+    color: #FFB03B;
+}
+h3{
+    font-family: "Satisfy";
+    color: #FFB03B;
+}
+.btn:hover, .btn-large:hover, .btn-small:hover {
+    background-color: #ffd176;
+}
+.btn:focus, .btn-large:focus, .btn-small:focus, .btn-floating:focus {
+    background-color: #ffa223;
+}
+
+input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):focus:not([readonly]), input[type=password]:not(.browser-default):focus:not([readonly]), input[type=email]:not(.browser-default):focus:not([readonly]), input[type=url]:not(.browser-default):focus:not([readonly]), input[type=time]:not(.browser-default):focus:not([readonly]), input[type=date]:not(.browser-default):focus:not([readonly]), input[type=datetime]:not(.browser-default):focus:not([readonly]), input[type=datetime-local]:not(.browser-default):focus:not([readonly]), input[type=tel]:not(.browser-default):focus:not([readonly]), input[type=number]:not(.browser-default):focus:not([readonly]), input[type=search]:not(.browser-default):focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
+    border-bottom: 1px solid #FFB03B;
+    box-shadow: 0 1px 0 0 #FFB03B;
+}
+select:focus {
+    outline: 1px solid #ffd176;
+}
+textarea:focus {
+    outline: none !important;
+    box-shadow: 0 0 4px #ffa223;
+}
+textarea{
+    height: auto;
+}
 /*======================================================= NavBar =======================================================*/
 
 .Logo{
@@ -45,6 +74,22 @@ select{
 }
 .bordurenav{
     border-bottom: 3px solid #FFB03B;
+}
+.dropdown-content li > a, .dropdown-content li > span {
+    color: #040404;
+}
+.sidenav{
+    padding-top: 20px;
+}
+.sidenav li > a {
+    font-size: 1em;
+    font-weight: normal;
+}
+.sidenav li:hover > a {
+    color: #fff!important;
+}
+#dropdown2 li:hover > a {
+    color: #000!important;
 }
 
 /*======================================================= Index =======================================================*/
@@ -91,12 +136,117 @@ header h3{
 .entrees{
     background: url(../img/categories/entrees.jpg) center;
 }
+.Lentrees:hover .entrees{
+    background: url(../img/icones/entrees.png) center;
+    background-color: #FFB03B;
+    background-repeat: no-repeat;
+
+}
 .plats{
     background: url(../img/categories/plats.jpg) center;
+}
+.Lplats:hover .plats{
+    background: url(../img/icones/plats.png) center;
+    background-color: #FFB03B;
+    background-repeat: no-repeat;
 }
 .sauces{
     background: url(../img/categories/sauces.jpg) center;
 }
+.Lsauces:hover .sauces{
+    background: url(../img/icones/sauce.png) center;
+    background-color: #FFB03B;
+    background-repeat: no-repeat;
+}
 .desserts{
     background: url(../img/categories/desserts.jpg) center;
+}
+.Ldesserts:hover .desserts{
+    background: url(../img/icones/desserts.png) center;
+    background-color: #FFB03B;
+    background-repeat: no-repeat;
+}
+
+/*======================================================= Categorie =======================================================*/
+
+.Larecette{
+    height: 250px;
+    margin-top: 1.5em;
+    background-size: cover !important;
+}
+.filtreRecette{
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 60px 20px 20px 20px;
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+.filtreRecette h4{
+    font-family: "Satisfy";
+    text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.63);
+}
+.filtreRecette p{
+    position: absolute;
+    bottom: 0;
+}
+.titreRecette{
+    margin-bottom: 0;
+}
+
+/*======================================================= Detail =======================================================*/
+
+.Padding{
+    padding: 20px 20px 0 20px;
+}
+hr{
+    border: 0;
+    height: 1px;
+    background-color: #FFB03B;
+}
+
+/*======================================================= Mes recettes =======================================================*/
+
+.Image{
+    height: 120px;
+    background-size: cover!important;
+}
+.icone{
+    width: 100%;
+    max-width: 40px;
+    height: 60px;
+    padding: 15px 0!important;
+}
+.brt{
+    border-radius: 5px 5px 0 0;
+}
+.brb{
+    border-radius: 0 0 5px 5px;
+    border-top: 2px solid white;
+}
+.icone i {
+    font-size: 28px;
+    width: 100%;
+    text-align: center;
+}
+.hrMes{
+    margin: 20px 0px 0 0.75em;
+}
+.paddinghr{
+    padding-right: 0!important;
+}
+.paddingbtn{
+    padding-bottom: 20px!important;
+}
+
+/*======================================================= Ajout =======================================================*/
+
+.paddingAjout{
+    padding: 20px!important;
+}
+.material-icons.insertphoto{
+    font-size: 50px;
+}
+.material-icons.insertphoto:hover{
+    color: #FFB03B;
+    cursor: pointer;
 }

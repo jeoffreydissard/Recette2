@@ -40,11 +40,13 @@ class RecetteType extends AbstractType
                 'required' => true,
             ))
             ->add('temps',     TextType::class)
-            ->add('ingredients',     TextType::class)
+            ->add('ingredients',     TextareaType::class,array('attr' => array(
+                'rows' => "4")))
             ->add('nbPersonnes',     NumberType::class)
-            ->add('preparation',   TextareaType::class)
+            ->add('preparation',   TextareaType::class,array('attr' => array(
+                'rows' => "8")))
             ->add('Ajouter', SubmitType::class,array('attr' => array(
-                'class' => "btn waves-effect waves-light cyan darken-3"
+                'class' => "waves-effect waves-light btn jaune black-text inscrit"
             )));
     }/**
      * {@inheritdoc}

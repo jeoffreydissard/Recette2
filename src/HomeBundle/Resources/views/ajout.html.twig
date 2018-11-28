@@ -2,18 +2,38 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block body %}
-    {{ form_start(recette) }}
-{#    {{ form_label(form.titre) }}
-    {{ form_widget(form.titre) }}
-    {{ form_label(form.contenu) }}
-    {{ form_widget(form.contenu) }}
-    {{ form_label(form.categorie) }}
-    {{ form_widget(form.categorie) }}
-    {{ form_widget(form.auteur, { 'value': app.user.username }) }}
-    {{ form_label(form.date) }}
-    {{ form_widget(form.date) }}
-    {{ form_label(form.image) }}
-    {{ form_widget(form.image) }}#}
-    {{ form_widget(recette) }}
-    {{ form_end(recette) }}
+    <div class="container marginT">
+        <h2>{{ ajoutmodif }} recette</h2>
+        <div class="row">
+            <div class="col s12 m8 l6 offset-m2 offset-l3 z-depth-1-half paddingAjout">
+                {{ form_start(recette) }}
+
+                    {{ form_label(recette.nom) }}
+                    {{ form_widget(recette.nom) }}
+
+                    {{ form_label(recette.categorie) }}
+                    {{ form_widget(recette.categorie) }}
+
+                    {{ form_label(recette.ingredients) }}
+                    {{ form_widget(recette.ingredients) }}
+
+                    {{ form_label(recette.preparation) }}
+                    {{ form_widget(recette.preparation) }}
+
+                    {{ form_label(recette.temps) }}
+                    {{ form_widget(recette.temps) }}
+
+                    {{ form_label(recette.nbPersonnes) }}
+                    {{ form_widget(recette.nbPersonnes) }}
+
+                    {{ form_label(recette.photo) }}
+                    {{ form_widget(recette.photo) }}
+
+                    {{ form_widget(recette) }}
+
+                {{ form_end(recette) }}
+            </div>
+        </div>
+    </div>
+
 {% endblock %}

@@ -23,6 +23,21 @@ class DefaultController extends Controller
 
         $recette= new Recette();
         $recette->setAuteur($this->getUser());
+        $recette->setIngredients("
+1. 24 carrés de chocolat noir
+2. 10 bananes
+3. 40 g de beurre
+4. 2 jaunes d'oeuf");
+        $recette->setPreparation("
+Etape 1
+    Préparez la garniture :
+Etape 2
+    Épluchez les bananes et coupez-les en rondelles. Arrosez-les de jus de citron.
+Etape 3    
+    Dans une poêle, versez le miel et faites-le caraméliser à feu doux quelques instants.");
+        $recette->setTemps("1 heure 24 minutes");
+        $recette->setNbPersonnes("2");
+
 
         $editRecette = $this->createForm('HomeBundle\Form\RecetteType', $recette);
         $editRecette->handleRequest($request);
@@ -32,14 +47,83 @@ class DefaultController extends Controller
             $em->persist($recette);
             $em->flush();
 
-            return $this->redirectToRoute('home_homepage');
+            return $this->redirectToRoute('mesrecettes_homepage');
         }
 
         return $this->render('@Home/ajout.html.twig', array(
             'user' => $user,
+            'ajoutmodif' => 'Ajouter une',
             'recette' => $editRecette->createView(),
 
         ));
+    }
+
+    public function modifAction($id, Request $request)
+    {
+
+        $user = $this->getDoctrine()
+            ->getRepository('UserBundle:User')
+            ->findAll();
+
+        $em = $this->getDoctrine()->getManager();
+        $recettes = $em->getRepository('HomeBundle:Recette')->find($id);
+
+        if (!$recettes) {
+            throw $this->createNotFoundException(
+                'Aucune recette trouvé pour cet id : '.$id
+            );
+        }
+
+        $recette= new Recette();
+        $recette->setAuteur($recettes->getAuteur());
+        $recette->setNom($recettes->getNom());
+        $recette->setCategorie($recettes->getCategorie());
+        $recette->setIngredients($recettes->getIngredients());
+        $recette->setPreparation($recettes->getPreparation());
+        $recette->setTemps($recettes->getTemps());
+        $recette->setNbPersonnes($recettes->getNbPersonnes());
+
+
+        $editRecette = $this->createForm('HomeBundle\Form\RecetteType', $recette);
+        $editRecette->handleRequest($request);
+
+        if ($editRecette->isSubmitted() && $editRecette->isValid()) {
+            $recettes->setAuteur($recette->getAuteur());
+            $recettes->setNom($recette->getNom());
+            $recettes->setCategorie($recette->getCategorie());
+            $recettes->setIngredients($recette->getIngredients());
+            $recettes->setPreparation($recette->getPreparation());
+            $recettes->setTemps($recette->getTemps());
+            $recettes->setNbPersonnes($recette->getNbPersonnes());
+            $recettes->setPhoto($recette->getPhoto());
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+
+            return $this->redirectToRoute('mesrecettes_homepage');
+        }
+
+        return $this->render('@Home/ajout.html.twig', array(
+            'user' => $user,
+            'ajoutmodif' => 'Modifier votre',
+            'recette' => $editRecette->createView(),
+
+        ));
+    }
+
+    public function suppAction($id)
+    {
+
+        $recette = $this->getDoctrine()
+            ->getRepository('HomeBundle:Recette')
+            ->find($id);
+
+        $manager = $this->getDoctrine()->getManager();
+
+        $manager->remove($recette);
+        $manager->flush();
+        $this->addFlash('deleteRecette', 'La recette a bien étais supprimer');
+
+        return $this->redirectToRoute('mesrecettes_homepage');
     }
 
     public function mesrecettesAction()
