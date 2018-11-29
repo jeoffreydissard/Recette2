@@ -24,7 +24,7 @@ class Recette
      * @ORM\Column(type="string")
      *
      * @Assert\NotBlank(message="Ajouter une image jpg")
-     * @Assert\File(mimeTypes={ "image/jpeg" })
+     * @Assert\File(mimeTypes={ "image/jpeg", "image/png", "image/svg", "image/gif" })
      */
     private $photo;
 
