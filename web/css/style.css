@@ -261,3 +261,9 @@ hr{
     color: #FFB03B;
     cursor: pointer;
 }
+
+/*======================================================= Pagination =======================================================*/
+
+.pagination li.active {
+    background-color: #FFB03B;
+}

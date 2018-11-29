@@ -5,7 +5,7 @@
     <div class="container marginT">
         <h2 class="titreRecette">{{ cate }}</h2>
         <div class="row">
-            {% for recette in recette %}
+            {% for recette in pagination %}
                 <a href="/detail/{{ recette.id }}">
                     <div class="col s12 m6 l4">
                         <div class="Larecette z-depth-1-half" style="background: url('{{ asset('uploads/images/' ~ recette.photo) }}') center;">

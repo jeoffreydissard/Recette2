@@ -153,7 +153,7 @@ Etape 3
 
     /* ============================================== Page Mes recettes ==============================================*/
 
-    public function mesrecettesAction()
+    public function mesrecettesAction(Request $request)
     {
         $this->denyAccessUnlessGranted('ROLE_USER');  // Verification pour voir si l'utilisateur est connecté sinon redirection sur /login
 
@@ -161,9 +161,16 @@ Etape 3
             ->getRepository('HomeBundle:Recette')
             ->findBy(array('auteur' => $this->getUser()));
 
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $recette, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            5/*limit per page*/
+        );
 
         return $this->render('@Home/mesrecettes.html.twig', array(
             'recette' => $recette,
+            'pagination' => $pagination,
         ));
     }
 
@@ -176,61 +183,89 @@ Etape 3
 
     /* ============================================== Page Entrées ==============================================*/
 
-    public function entreesAction()
+    public function entreesAction(Request $request)
     {
         $recette = $this->getDoctrine()
             ->getRepository('HomeBundle:Recette')
             ->findBy(array('categorie' => 'Entrée'));
 
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $recette, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            6/*limit per page*/
+        );
 
         return $this->render('@Home/categorie.html.twig', array(
             'recette' => $recette,
             'cate' => 'Les Entrées',
+            'pagination' => $pagination,
         ));
     }
 
     /* ============================================== Page Plats ==============================================*/
 
-    public function platsAction()
+    public function platsAction(Request $request)
     {
         $recette = $this->getDoctrine()
             ->getRepository('HomeBundle:Recette')
             ->findBy(array('categorie' => 'Plats'));
 
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $recette, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            6/*limit per page*/
+        );
 
         return $this->render('@Home/categorie.html.twig', array(
             'recette' => $recette,
             'cate' => 'Les Plats',
+            'pagination' => $pagination,
         ));
     }
 
     /* ============================================== Page Sauces ==============================================*/
 
-    public function saucesAction()
+    public function saucesAction(Request $request)
     {
         $recette = $this->getDoctrine()
             ->getRepository('HomeBundle:Recette')
             ->findBy(array('categorie' => 'Sauces'));
 
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $recette, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            6/*limit per page*/
+        );
 
         return $this->render('@Home/categorie.html.twig', array(
             'recette' => $recette,
             'cate' => 'Les Sauces',
+            'pagination' => $pagination,
         ));
     }
 
     /* ============================================== Page Desserts ==============================================*/
 
-    public function dessertsAction()
+    public function dessertsAction(Request $request)
     {
         $recette = $this->getDoctrine()
             ->getRepository('HomeBundle:Recette')
             ->findBy(array('categorie' => 'Dessert'));
 
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $recette, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            6/*limit per page*/
+        );
 
         return $this->render('@Home/categorie.html.twig', array(
             'recette' => $recette,
             'cate' => 'Les Desserts',
+            'pagination' => $pagination,
         ));
     }
 
