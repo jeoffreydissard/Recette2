@@ -41,7 +41,8 @@ class RecetteType extends AbstractType
             ))
             ->add('temps',     TextType::class)
             ->add('ingredients',     TextareaType::class,array('attr' => array(
-                'rows' => "4")))
+                'rows' => "4",
+                'contenteditable' => "true")))
             ->add('nbPersonnes',     NumberType::class)
             ->add('preparation',   TextareaType::class,array('attr' => array(
                 'rows' => "8")))

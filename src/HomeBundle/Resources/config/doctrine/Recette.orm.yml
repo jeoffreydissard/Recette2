@@ -26,15 +26,13 @@ HomeBundle\Entity\Recette:
             length: 255
             column: Temps
         ingredients:
-            type: string
-            length: 255
+            type: text
             column: Ingredients
         nbPersonnes:
             type: integer
             column: NbPersonnes
         preparation:
-            type: string
-            length: 255
+            type: text
             column: Preparation
     manyToOne:
         auteur:
