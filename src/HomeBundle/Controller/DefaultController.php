@@ -185,6 +185,7 @@ Etape 3
 
         return $this->render('@Home/categorie.html.twig', array(
             'recette' => $recette,
+            'cate' => 'Les Entrées',
         ));
     }
 
@@ -199,6 +200,7 @@ Etape 3
 
         return $this->render('@Home/categorie.html.twig', array(
             'recette' => $recette,
+            'cate' => 'Les Plats',
         ));
     }
 
@@ -213,6 +215,7 @@ Etape 3
 
         return $this->render('@Home/categorie.html.twig', array(
             'recette' => $recette,
+            'cate' => 'Les Sauces',
         ));
     }
 
@@ -227,6 +230,7 @@ Etape 3
 
         return $this->render('@Home/categorie.html.twig', array(
             'recette' => $recette,
+            'cate' => 'Les Desserts',
         ));
     }
 

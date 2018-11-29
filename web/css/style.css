@@ -1,6 +1,8 @@
 
 /*======================================================= Init =======================================================*/
-
+html{
+    color: #333333;
+}
 @font-face {
     font-family: "Satisfy";
     src: url("font/Satisfy-Regular.ttf");
@@ -19,6 +21,9 @@ main {
 }
 .jaune-text{
     color: #FFB03B;
+}
+.black-text{
+    color: #333333!important;
 }
 select{
     display: block;
@@ -82,7 +87,7 @@ textarea{
     border-bottom: 3px solid #FFB03B;
 }
 .dropdown-content li > a, .dropdown-content li > span {
-    color: #040404;
+    color: #333333;
 }
 .sidenav{
     padding-top: 20px;
@@ -95,7 +100,7 @@ textarea{
     color: #fff!important;
 }
 #dropdown2 li:hover > a {
-    color: #000!important;
+    color: #333333!important;
 }
 
 /*======================================================= Index =======================================================*/

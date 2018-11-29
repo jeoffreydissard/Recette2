@@ -3,7 +3,7 @@
 
 {% block body %}
     <div class="container marginT">
-        <h2 class="titreRecette">Les recettes</h2>
+        <h2 class="titreRecette">{{ cate }}</h2>
         <div class="row">
             {% for recette in recette %}
                 <a href="/detail/{{ recette.id }}">
