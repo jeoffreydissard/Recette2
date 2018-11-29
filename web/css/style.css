@@ -55,6 +55,12 @@ textarea:focus {
 textarea{
     height: auto;
 }
+[type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+    position: absolute;
+    opacity: 1;
+    pointer-events: bounding-box;
+}
+
 /*======================================================= NavBar =======================================================*/
 
 .Logo{
