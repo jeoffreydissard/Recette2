@@ -9,13 +9,19 @@ use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
+
+    /* ============================================== Page Accueil ==============================================*/
+
     public function indexAction()
     {
         return $this->render('@Home/index.html.twig');
     }
 
+    /* ============================================== Page Ajout de recette ==============================================*/
+
     public function ajoutAction(Request $request)
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');  // Verification pour voir si l'utilisateur est connecté sinon redirection sur /login
 
         $user = $this->getDoctrine()
             ->getRepository('UserBundle:User')
@@ -58,8 +64,12 @@ Etape 3
         ));
     }
 
+    /* ============================================== Page Modification de recette ==============================================*/
+
     public function modifAction($id, Request $request)
     {
+
+        $this->denyAccessUnlessGranted('ROLE_USER');  // Verification pour voir si l'utilisateur est connecté sinon redirection sur /login
 
         $user = $this->getDoctrine()
             ->getRepository('UserBundle:User')
@@ -74,60 +84,79 @@ Etape 3
             );
         }
 
-        $recette= new Recette();
-        $recette->setAuteur($recettes->getAuteur());
-        $recette->setNom($recettes->getNom());
-        $recette->setCategorie($recettes->getCategorie());
-        $recette->setIngredients($recettes->getIngredients());
-        $recette->setPreparation($recettes->getPreparation());
-        $recette->setTemps($recettes->getTemps());
-        $recette->setNbPersonnes($recettes->getNbPersonnes());
+        if ($recettes->getAuteur() == $this->getUser()){
+
+            $recette= new Recette();
+            $recette->setAuteur($recettes->getAuteur());
+            $recette->setNom($recettes->getNom());
+            $recette->setCategorie($recettes->getCategorie());
+            $recette->setIngredients($recettes->getIngredients());
+            $recette->setPreparation($recettes->getPreparation());
+            $recette->setTemps($recettes->getTemps());
+            $recette->setNbPersonnes($recettes->getNbPersonnes());
 
 
-        $editRecette = $this->createForm('HomeBundle\Form\RecetteType', $recette);
-        $editRecette->handleRequest($request);
+            $editRecette = $this->createForm('HomeBundle\Form\RecetteType', $recette);
+            $editRecette->handleRequest($request);
 
-        if ($editRecette->isSubmitted() && $editRecette->isValid()) {
-            $recettes->setAuteur($recette->getAuteur());
-            $recettes->setNom($recette->getNom());
-            $recettes->setCategorie($recette->getCategorie());
-            $recettes->setIngredients($recette->getIngredients());
-            $recettes->setPreparation($recette->getPreparation());
-            $recettes->setTemps($recette->getTemps());
-            $recettes->setNbPersonnes($recette->getNbPersonnes());
-            $recettes->setPhoto($recette->getPhoto());
-            $em = $this->getDoctrine()->getManager();
-            $em->flush();
+            if ($editRecette->isSubmitted() && $editRecette->isValid()) {
+                $recettes->setAuteur($recette->getAuteur());
+                $recettes->setNom($recette->getNom());
+                $recettes->setCategorie($recette->getCategorie());
+                $recettes->setIngredients($recette->getIngredients());
+                $recettes->setPreparation($recette->getPreparation());
+                $recettes->setTemps($recette->getTemps());
+                $recettes->setNbPersonnes($recette->getNbPersonnes());
+                $recettes->setPhoto($recette->getPhoto());
+                $em = $this->getDoctrine()->getManager();
+                $em->flush();
 
+                return $this->redirectToRoute('mesrecettes_homepage');
+            }
+
+            return $this->render('@Home/ajout.html.twig', array(
+                'user' => $user,
+                'ajoutmodif' => 'Modifier votre',
+                'recette' => $editRecette->createView(),
+
+            ));
+        } else{
             return $this->redirectToRoute('mesrecettes_homepage');
         }
 
-        return $this->render('@Home/ajout.html.twig', array(
-            'user' => $user,
-            'ajoutmodif' => 'Modifier votre',
-            'recette' => $editRecette->createView(),
-
-        ));
     }
+
+    /* ============================================== Supprimer une recette ==============================================*/
 
     public function suppAction($id)
     {
+
+        $this->denyAccessUnlessGranted('ROLE_USER');  // Verification pour voir si l'utilisateur est connecté sinon redirection sur /login
 
         $recette = $this->getDoctrine()
             ->getRepository('HomeBundle:Recette')
             ->find($id);
 
-        $manager = $this->getDoctrine()->getManager();
+        if ($recettes->getAuteur() == $this->getUser()){
+            $manager = $this->getDoctrine()->getManager();
 
-        $manager->remove($recette);
-        $manager->flush();
-        $this->addFlash('deleteRecette', 'La recette a bien étais supprimer');
+            $manager->remove($recette);
+            $manager->flush();
+            $this->addFlash('deleteRecette', 'La recette a bien étais supprimer');
 
-        return $this->redirectToRoute('mesrecettes_homepage');
+            return $this->redirectToRoute('mesrecettes_homepage');
+        }else{
+            return $this->redirectToRoute('mesrecettes_homepage');
+        }
+
     }
+
+    /* ============================================== Page Mes recettes ==============================================*/
 
     public function mesrecettesAction()
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');  // Verification pour voir si l'utilisateur est connecté sinon redirection sur /login
+
         $recette = $this->getDoctrine()
             ->getRepository('HomeBundle:Recette')
             ->findBy(array('auteur' => $this->getUser()));
@@ -138,10 +167,14 @@ Etape 3
         ));
     }
 
+    /* ============================================== Page Recettes ==============================================*/
+
     public function recettesAction()
     {
         return $this->render('@Home/recettes.html.twig');
     }
+
+    /* ============================================== Page Entrées ==============================================*/
 
     public function entreesAction()
     {
@@ -154,6 +187,9 @@ Etape 3
             'recette' => $recette,
         ));
     }
+
+    /* ============================================== Page Plats ==============================================*/
+
     public function platsAction()
     {
         $recette = $this->getDoctrine()
@@ -165,6 +201,9 @@ Etape 3
             'recette' => $recette,
         ));
     }
+
+    /* ============================================== Page Sauces ==============================================*/
+
     public function saucesAction()
     {
         $recette = $this->getDoctrine()
@@ -176,6 +215,9 @@ Etape 3
             'recette' => $recette,
         ));
     }
+
+    /* ============================================== Page Desserts ==============================================*/
+
     public function dessertsAction()
     {
         $recette = $this->getDoctrine()
@@ -187,6 +229,8 @@ Etape 3
             'recette' => $recette,
         ));
     }
+
+    /* ============================================== Page Detail de la recette ==============================================*/
 
     public function detailAction($id)
     {
